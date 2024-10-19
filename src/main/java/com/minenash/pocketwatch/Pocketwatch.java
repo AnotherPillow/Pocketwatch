@@ -28,7 +28,7 @@ public class Pocketwatch extends DrawableHelper implements ClientModInitializer 
 	@Override
 	public void onInitializeClient() {
 
-		CONFIG.whitelist().replaceAll(id -> new Identifier(id).toString());
+		CONFIG.whitelist().removeAll(Arrays.asList("", null)).replaceAll(id -> new Identifier(id).toString());
 		CONFIG.subscribeToWhitelist( whitelist -> whitelist.replaceAll(id -> new Identifier(id).toString()));
 
 		HudRenderCallback.EVENT.register(new Identifier("smart-fabric:render"), (matrices, tickDelta) -> {
